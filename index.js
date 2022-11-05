@@ -13,7 +13,7 @@ app.use(
 
 
 app.get("/", async (req, res, next) => {
-  var text = fs.readFileSync("https://tjdoad.com/files.json", "utf8");
+  var text = fs.readFileSync("./files.json", "utf8");
   console.log(text);
   function removeDuplicates(arr) {
     const uniqueIds = new Set();
