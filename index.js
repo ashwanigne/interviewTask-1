@@ -11,7 +11,6 @@ app.use(
   })
 );
 
-const PORT = 8000;
 
 app.get("/", async (req, res, next) => {
   var text = fs.readFileSync("https://tjdoad.com/files.json", "utf8");
@@ -39,7 +38,7 @@ app.get("/", async (req, res, next) => {
     data: data,
   });
 });
-
-app.listen(PORT, () => {
+ 
+app.listen(process.env.PORT ||5000, () => {
   console.log(`listening on port ${PORT} `);
 });
