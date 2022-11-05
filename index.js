@@ -7,7 +7,7 @@ const cors = require("cors");
 //allow access to
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "*",
   })
 );
 
