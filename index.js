@@ -11,34 +11,37 @@ app.use(
   })
 );
 
-
-app.get("/", async (req, res, next) => {
+app.get("/time", async (req, res, next) => {
   var text = fs.readFileSync("./files.json", "utf8");
-  console.log(text);
-  function removeDuplicates(arr) {
-    const uniqueIds = new Set();
 
-    const unique = arr.filter((element) => {
-      const isDuplicate = uniqueIds.has(element.size);
+  const PATTERN = "/time";
+  const arr = JSON.parse(text);
+  const getTime = arr.filter(function (arr) {
+    return arr.path.indexOf(PATTERN) !== -1;
+  });
 
-      uniqueIds.add(element.size);
-
-      if (!isDuplicate) {
-        return true;
-      }
-
-      return false;
-    });
-    return unique;
-  }
-  const data = removeDuplicates(JSON.parse(text));
-  console.log("data --> ", data);
   res.status(200).json({
     success: true,
-    data: data,
+    data: getTime,
   });
 });
- 
-app.listen(process.env.PORT ||5000, () => {
+
+/// api for getting data keyword
+app.get("/data", async (req, res, next) => {
+  var text = fs.readFileSync("./files.json", "utf8");
+
+  const PATTERN = "/data";
+  const arr = JSON.parse(text);
+  const getTime = arr.filter(function (arr) {
+    return arr.path.indexOf(PATTERN) !== -1;
+  });
+
+  res.status(200).json({
+    success: true,
+    data: getTime,
+  });
+});
+
+app.listen(process.env.PORT || 5000, () => {
   console.log(`listening on port 5000 `);
 });
